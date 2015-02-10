@@ -22,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.CustomCacheRequest;
 
 import java.io.UnsupportedEncodingException;
 
@@ -31,7 +32,7 @@ import java.io.UnsupportedEncodingException;
  *
  * @param <T> JSON type of response expected
  */
-public abstract class JsonRequest<T> extends Request<T> {
+public abstract class JsonRequest<T> extends CustomCacheRequest<T> {
     /** Charset for request. */
     private static final String PROTOCOL_CHARSET = "utf-8";
 
@@ -49,12 +50,12 @@ public abstract class JsonRequest<T> extends Request<T> {
      * @deprecated Use {@link #JsonRequest(int, String, String, Listener, ErrorListener)}.
      */
     public JsonRequest(String url, String requestBody, Listener<T> listener,
-            ErrorListener errorListener) {
+                       CustomCacheErrorListener errorListener) {
         this(Method.DEPRECATED_GET_OR_POST, url, requestBody, listener, errorListener);
     }
 
     public JsonRequest(int method, String url, String requestBody, Listener<T> listener,
-            ErrorListener errorListener) {
+                       CustomCacheErrorListener errorListener) {
         super(method, url, errorListener);
         mListener = listener;
         mRequestBody = requestBody;
