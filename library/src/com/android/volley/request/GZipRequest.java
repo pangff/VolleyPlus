@@ -4,6 +4,7 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.error.ParseError;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StrategyRequest;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -24,7 +25,7 @@ public class GZipRequest extends StringRequest {
      * @param listener Listener to receive the String response
      * @param errorListener Error listener, or null to ignore errors
      */
-	public GZipRequest(int method, String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {
+	public GZipRequest(int method, String url, Response.Listener<String> listener,StrategyRequest.CustomCacheErrorListener errorListener) {
 		super(method, url, listener, errorListener);
 	}
 
@@ -35,7 +36,7 @@ public class GZipRequest extends StringRequest {
      * @param listener Listener to receive the String response
      * @param errorListener Error listener, or null to ignore errors
      */
-	public GZipRequest(String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {
+	public GZipRequest(String url, Response.Listener<String> listener,StrategyRequest.CustomCacheErrorListener errorListener) {
 		super(url, listener, errorListener);
 	}
 

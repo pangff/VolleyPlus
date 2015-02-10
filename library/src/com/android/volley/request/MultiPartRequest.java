@@ -7,6 +7,7 @@ import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.Response.ProgressListener;
+import com.android.volley.toolbox.StrategyRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +17,7 @@ import java.util.Map;
  * 
  * @param <T> Response expected
  */
-public abstract class MultiPartRequest<T> extends Request<T> implements ProgressListener{
+public abstract class MultiPartRequest<T> extends StrategyRequest<T> implements ProgressListener{
 
 	private static final String PROTOCOL_CHARSET = "utf-8";
 	private Listener<T> mListener;
@@ -33,7 +34,7 @@ public abstract class MultiPartRequest<T> extends Request<T> implements Progress
      * @param listener Listener to receive the String response
      * @param errorListener Error listener, or null to ignore errors
      */
-	public MultiPartRequest(int method, String url, Listener<T> listener, ErrorListener errorListener) {
+	public MultiPartRequest(int method, String url, Listener<T> listener, CustomCacheErrorListener errorListener) {
 
 		super(method, url, Priority.NORMAL, errorListener, new DefaultRetryPolicy(TIMEOUT_MS, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
 				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));

@@ -29,13 +29,12 @@ import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
-import com.android.volley.Request;
 import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.JsonObjectRequest;
-import com.android.volley.toolbox.CustomCacheRequest;
+import com.android.volley.toolbox.StrategyRequest;
 import com.volley.demo.util.ImageArrayAdapter;
 import com.volley.demo.util.ImageEntry;
 import com.volley.demo.util.MyVolley;
@@ -135,15 +134,15 @@ public class ExampleNetworkListView extends ActionBarActivity {
     }
 
 
-    private CustomCacheRequest.CustomCacheErrorListener createMyReqErrorListener() {
-        return new CustomCacheRequest.CustomCacheErrorListener() {
+    private StrategyRequest.CustomCacheErrorListener createMyReqErrorListener() {
+        return new StrategyRequest.CustomCacheErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 showErrorDialog();
             }
 
             @Override
-            public void netWorkErrorReadCache(CustomCacheRequest<?> request) {
+            public void netWorkErrorReadCache(StrategyRequest<?> request) {
 
             }
         };

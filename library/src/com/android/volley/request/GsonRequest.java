@@ -11,13 +11,14 @@ import com.android.volley.Response.Listener;
 import com.android.volley.error.AuthFailureError;
 import com.android.volley.error.ParseError;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StrategyRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
  
 /**
  * Volley adapter for JSON requests that will be parsed into Java objects by Gson.
  */
-public class GsonRequest<T> extends Request<T> {
+public class GsonRequest<T> extends StrategyRequest<T> {
     private final Gson gson = new Gson();
     private final Class<T> clazz;
     private final Map<String, String> headers;
@@ -32,7 +33,7 @@ public class GsonRequest<T> extends Request<T> {
      * @param headers Map of request headers
      */
     public GsonRequest(String url, Class<T> clazz, Map<String, String> headers,
-            Listener<T> listener, ErrorListener errorListener) {
+            Listener<T> listener, CustomCacheErrorListener errorListener) {
         super(Method.GET, url, errorListener);
         this.clazz = clazz;
         this.headers = headers;
@@ -49,7 +50,7 @@ public class GsonRequest<T> extends Request<T> {
      */
     public GsonRequest(int type, String url, Class<T> clazz, Map<String, String> headers,
     		Map<String, String> params,
-            Listener<T> listener, ErrorListener errorListener) {
+            Listener<T> listener, CustomCacheErrorListener errorListener) {
         super(type, url, errorListener);
         this.clazz = clazz;
         this.headers = headers;

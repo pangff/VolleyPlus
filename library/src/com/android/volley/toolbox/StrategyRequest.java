@@ -2,6 +2,7 @@ package com.android.volley.toolbox;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.error.VolleyError;
 
 /**
@@ -26,6 +27,16 @@ public abstract class StrategyRequest<T> extends Request<T> {
         this.mErrorListener = listener;
     }
 
+    /**
+     * Creates a new request with the given method (one of the values from {@link Method}),
+     * URL, priority, error listener and retry policy.  Note that the normal response listener is not provided here as
+     * delivery of responses is provided by subclasses, who have a better idea of how to deliver
+     * an already-parsed response.
+     */
+    public StrategyRequest(int method, String url, Priority priority,CustomCacheErrorListener listener, RetryPolicy retryPolicy) {
+        super(method,url,priority,listener,retryPolicy);
+        this.mErrorListener = listener;
+    }
 
 
     public enum RequestType {

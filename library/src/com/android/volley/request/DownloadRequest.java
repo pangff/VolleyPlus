@@ -25,6 +25,7 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.Response.ProgressListener;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StrategyRequest;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -34,7 +35,7 @@ import java.io.UnsupportedEncodingException;
 /**
  * A canned request for retrieving the response body at a given URL as a String.
  */
-public class DownloadRequest extends Request<String> implements ProgressListener {
+public class DownloadRequest extends StrategyRequest<String> implements ProgressListener {
     private final Listener<String> mListener;
     private final String mDownloadPath;
     private ProgressListener mProgressListener;
@@ -48,7 +49,7 @@ public class DownloadRequest extends Request<String> implements ProgressListener
      * @param errorListener Error listener, or null to ignore errors
      */
     public DownloadRequest(String url, String download_path, Listener<String> listener,
-            ErrorListener errorListener) {
+            CustomCacheErrorListener errorListener) {
         super(Method.GET, url, errorListener);
         mDownloadPath = download_path;
         mListener = listener;

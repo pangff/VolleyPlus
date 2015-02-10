@@ -28,6 +28,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.StringRequest;
+import com.android.volley.toolbox.StrategyRequest;
 import com.volley.demo.util.MyVolley;
 
 /**
@@ -73,11 +74,16 @@ public class ExampleSimpleRequest extends ActionBarActivity {
     }
 
 
-    private Response.ErrorListener createMyReqErrorListener() {
-        return new Response.ErrorListener() {
+    private StrategyRequest.CustomCacheErrorListener createMyReqErrorListener() {
+        return new StrategyRequest.CustomCacheErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 mTvResult.setText(error.getMessage());
+            }
+
+            @Override
+            public void netWorkErrorReadCache(StrategyRequest<?> request) {
+
             }
         };
     }

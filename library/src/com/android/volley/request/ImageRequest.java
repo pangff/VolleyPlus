@@ -39,12 +39,13 @@ import com.android.volley.error.ParseError;
 import com.android.volley.misc.ImageUtils;
 import com.android.volley.misc.Utils;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StrategyRequest;
 
 /**
  * A canned request for getting an image at a given URL and calling
  * back with a decoded Bitmap.
  */
-public class ImageRequest extends Request<Bitmap> {
+public class ImageRequest extends StrategyRequest<Bitmap> {
     /** Socket timeout in milliseconds for image requests */
     private static final int IMAGE_TIMEOUT_MS = 1000;
 
@@ -91,7 +92,7 @@ public class ImageRequest extends Request<Bitmap> {
      */
     public ImageRequest(String url, Resources resources, ContentResolver contentResolver,
     		Response.Listener<Bitmap> listener, int maxWidth, int maxHeight,
-            Config decodeConfig, Response.ErrorListener errorListener) {
+            Config decodeConfig, CustomCacheErrorListener errorListener) {
         super(Method.GET, url, errorListener);
         setRetryPolicy(
                 new DefaultRetryPolicy(IMAGE_TIMEOUT_MS, IMAGE_MAX_RETRIES, IMAGE_BACKOFF_MULT));

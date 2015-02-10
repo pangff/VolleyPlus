@@ -344,10 +344,15 @@ public class ImageLoader {
                 onGetImageSuccess(cacheKey, response);
             }
         }, maxWidth, maxHeight,
-                Config.RGB_565, new ErrorListener() {
+                Config.RGB_565, new StrategyRequest.CustomCacheErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 onGetImageError(cacheKey, error);
+            }
+
+            @Override
+            public void netWorkErrorReadCache(StrategyRequest<?> request) {
+
             }
         });
     }

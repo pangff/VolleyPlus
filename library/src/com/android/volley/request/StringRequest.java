@@ -22,13 +22,14 @@ import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StrategyRequest;
 
 import java.io.UnsupportedEncodingException;
 
 /**
  * A canned request for retrieving the response body at a given URL as a String.
  */
-public class StringRequest extends Request<String> {
+public class StringRequest extends StrategyRequest<String> {
     private final Listener<String> mListener;
 
     /**
@@ -40,7 +41,7 @@ public class StringRequest extends Request<String> {
      * @param errorListener Error listener, or null to ignore errors
      */
     public StringRequest(int method, String url, Listener<String> listener,
-            ErrorListener errorListener) {
+                         CustomCacheErrorListener errorListener) {
         super(method, url, errorListener);
         mListener = listener;
     }
@@ -52,7 +53,7 @@ public class StringRequest extends Request<String> {
      * @param listener Listener to receive the String response
      * @param errorListener Error listener, or null to ignore errors
      */
-    public StringRequest(String url, Listener<String> listener, ErrorListener errorListener) {
+    public StringRequest(String url, Listener<String> listener, CustomCacheErrorListener errorListener) {
         this(Method.GET, url, listener, errorListener);
     }
 
