@@ -27,13 +27,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.error.VolleyError;
 import com.android.volley.request.JsonObjectRequest;
-import com.android.volley.toolbox.CustomCacheRequest;
+import com.android.volley.toolbox.StrategyRequest;
 import com.android.volley.toolbox.RequestHelper;
 import com.volley.demo.util.MyVolley;
 
@@ -60,11 +59,11 @@ public class ExampleJsonRequest extends ActionBarActivity {
                 RequestQueue queue = MyVolley.getRequestQueue();
                 
                 JsonObjectRequest myReq = new JsonObjectRequest(Method.GET, 
-                                                        "http://192.168.1.21:6061/istock/newTalkStock/hotlist?formId=0&reqNum=1",
+                                                        "http://echo.jsontest.com/key/value/one/two",
                                                         null,
                                                         createMyReqSuccessListener(),
                                                         createMyReqErrorListener());
-                myReq.setRequestType(CustomCacheRequest.RequestType.NETWORK);
+                myReq.setRequestType(StrategyRequest.RequestType.NETWORK);
                 RequestHelper.getInstance().doRequest(queue,myReq);
                 //queue.add(myReq);
 
@@ -78,7 +77,7 @@ public class ExampleJsonRequest extends ActionBarActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    mTvResult.setText(response.getString("status"));
+                    mTvResult.setText(response.getString("one"));
                 } catch (JSONException e) {
                     mTvResult.setText("Parse error");
                 }
@@ -87,8 +86,8 @@ public class ExampleJsonRequest extends ActionBarActivity {
     }
     
     
-    private CustomCacheRequest.CustomCacheErrorListener createMyReqErrorListener() {
-        return new CustomCacheRequest.CustomCacheErrorListener() {
+    private StrategyRequest.CustomCacheErrorListener createMyReqErrorListener() {
+        return new StrategyRequest.CustomCacheErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 mTvResult.setText(error.getMessage());
@@ -96,10 +95,10 @@ public class ExampleJsonRequest extends ActionBarActivity {
 
 
             @Override
-            public void netWorkErrorReadCache(CustomCacheRequest<?> request) {
+            public void netWorkErrorReadCache(StrategyRequest<?> request) {
                 Toast.makeText(ExampleJsonRequest.this,"netWorkErrorReadCache",Toast.LENGTH_LONG).show();
-                request.setRequestType(CustomCacheRequest.RequestType.CACHE);
-                RequestHelper.getInstance().doRequest(MyVolley.getRequestQueue(),((CustomCacheRequest)request));
+                request.setRequestType(StrategyRequest.RequestType.CACHE);
+                RequestHelper.getInstance().doRequest(MyVolley.getRequestQueue(),((StrategyRequest)request));
             }
         };
     }
