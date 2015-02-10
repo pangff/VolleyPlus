@@ -17,12 +17,11 @@
 package com.android.volley.request;
 
 import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.CustomCacheRequest;
+import com.android.volley.toolbox.StrategyRequest;
 
 import java.io.UnsupportedEncodingException;
 
@@ -32,7 +31,7 @@ import java.io.UnsupportedEncodingException;
  *
  * @param <T> JSON type of response expected
  */
-public abstract class JsonRequest<T> extends CustomCacheRequest<T> {
+public abstract class JsonRequest<T> extends StrategyRequest<T> {
     /** Charset for request. */
     private static final String PROTOCOL_CHARSET = "utf-8";
 
