@@ -27,6 +27,7 @@ import com.android.volley.VolleyLog.MarkerLog;
 import com.android.volley.error.AuthFailureError;
 import com.android.volley.error.TimeoutError;
 import com.android.volley.error.VolleyError;
+import com.android.volley.request.WebServiceBean;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -568,6 +569,16 @@ public abstract class Request<T> implements Comparable<Request<T>> {
 
         //let user decide how to use cache
         return mShouldCache;
+    }
+
+
+    /**
+     * add webservice SoapObject
+     * WebServiceRequest overwrrite the method
+     * @return
+     */
+    public WebServiceBean getWebServiceParam(){
+        return null;
     }
 
     /**

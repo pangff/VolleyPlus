@@ -14,7 +14,6 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-
 <resources>
 
     <string name="app_name">VolleyPlus Sample</string>
@@ -26,12 +25,13 @@
     <string name="app_about">This library is improvements to Volley along with full image caching.</string>
     <string name="twitter"><a href="https://twitter.com/1HaKr"> Twitter</a></string>
     <string name="gplus"><a href="https://plus.google.com/109240246596102887385"> Google+</a></string>
-
-    
     <string name="clear_cache_menu">Clear Caches</string>
     <string name="clear_cache_complete_toast">Caches have been cleared</string>
     <string name="imageview_description">Image Thumbnail</string>
     <string name="no_network_connection_toast">No network connection found</string>
-
     <string name="activity_simple_cache">Simple Image Cache</string>
+    <string name="title_activity_example_webservice">ExampleWebservice</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
 </resources>

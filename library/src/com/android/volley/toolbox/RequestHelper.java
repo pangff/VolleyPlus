@@ -67,8 +67,11 @@ public class RequestHelper {
         if (entry != null) {
             entry.ttl = ttl;
             entry.softTtl = softTtl;
+            if(queue!=null && queue.getCache()!=null){
+                queue.getCache().put(request.getCacheKey(),entry);
+            }
         }
-        queue.getCache().put(request.getCacheKey(),entry);
+
     }
 
 

@@ -16,8 +16,6 @@
 
 package com.android.volley.toolbox;
 
-import java.io.File;
-
 import android.content.Context;
 import android.net.http.AndroidHttpClient;
 
@@ -26,6 +24,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.cache.DiskBasedCache;
 import com.android.volley.misc.NetUtils;
 import com.android.volley.misc.Utils;
+
+import java.io.File;
 
 public class Volley {
 
@@ -65,4 +65,6 @@ public class Volley {
     public static RequestQueue newRequestQueue(Context context) {
         return newRequestQueue(context, null);
     }
+
+
 }

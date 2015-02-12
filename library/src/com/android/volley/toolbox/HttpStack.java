@@ -20,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.error.AuthFailureError;
 
 import org.apache.http.HttpResponse;
+import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 import java.util.Map;
@@ -40,5 +41,5 @@ public interface HttpStack {
      * @return the HTTP response
      */
     public HttpResponse performRequest(Request<?> request, Map<String, String> additionalHeaders)
-        throws IOException, AuthFailureError;
+            throws IOException, AuthFailureError, XmlPullParserException;
 }

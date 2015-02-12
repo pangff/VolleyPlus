@@ -18,6 +18,8 @@ package com.android.volley;
 
 import com.android.volley.error.VolleyError;
 
+import org.xmlpull.v1.XmlPullParserException;
+
 /**
  * An interface for performing requests.
  */
@@ -28,5 +30,5 @@ public interface Network {
      * @return A {@link NetworkResponse} with data and caching metadata; will never be null
      * @throws VolleyError on errors
      */
-    public NetworkResponse performRequest(Request<?> request) throws VolleyError;
+    public NetworkResponse performRequest(Request<?> request) throws VolleyError, XmlPullParserException;
 }
