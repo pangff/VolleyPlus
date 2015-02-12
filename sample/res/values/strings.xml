@@ -33,5 +33,6 @@
     <string name="title_activity_example_webservice">ExampleWebservice</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_example_local_json_request">ExampleLocalJsonRequest</string>
 
 </resources>

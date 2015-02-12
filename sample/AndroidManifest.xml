@@ -96,6 +96,10 @@
             android:name=".ExampleWebservice"
             android:label="@string/title_activity_example_webservice" >
         </activity>
+        <activity
+            android:name=".ExampleLocalJsonRequest"
+            android:label="@string/title_activity_example_local_json_request" >
+        </activity>
     </application>
 
 </manifest>
